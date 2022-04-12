@@ -55,7 +55,7 @@ const Brand = () => {
 // const = styled.``
 const BrandContainer = styled.div`
   position: relative;
-  padding:28px ;
+  /* padding:28px ; */
   display: grid;
   place-items: center;
   width: 100%;
@@ -153,7 +153,9 @@ height: 50px;
 const Landing = () => {
     return (
         <LandingDiv>
-        <LandingTop></LandingTop>
+        <LandingTop>
+            <Header/>
+        </LandingTop>
         <LandingMiddle>
             <Brand/>
         </LandingMiddle>
@@ -168,8 +170,8 @@ const Landing = () => {
 
 const LandingDiv = styled.div`
     /* border: 1px solid black; */
-    margin:0;
-    padding:0;
+    /* margin:0;
+    padding:0; */
 `
 const LandingTop = styled.div`
     /* border: 1px solid black; */
@@ -179,8 +181,6 @@ const LandingTop = styled.div`
     /* background-color: blue ; */
 `
 const LandingMiddle = styled.div`
-    border: 1px solid black;
-
     text-align: center;
     justify-content: center;
     align-items: center;
