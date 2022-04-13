@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components'
 import Footer from "../components/Footer";
 import Header from '../components/Header';
@@ -6,26 +6,26 @@ import Header from '../components/Header';
 // 스테이트로 카운터해서 값이 추가될때마다 카운트가 올라가고 삭제하면 하나 삭제할때마다
 // 관심상품
 function Basket() {
-
-    const CheckBox = function Checks () {
-        const [isOn, setisOn] = useState(false);
+    const [isOne, setisOne] = useState(false);
+    const isTwo = !isOne;
+    const CheckBox = function Checks() {
         const CheckHandler = () => {
-          setisOn(!isOn)
+            setisOne(!isOne)
         }
 
         // if(isOn === true){
         //     return true;
         // }
         return (
-         <Check><Checking onClick={CheckHandler} className={isOn === true ? 'checked' : '' }/>
-         </Check>
-        ) 
-     }
-    
+            <Check><Checking onClick={CheckHandler} className={isOne === true ? 'checked' : ''} />
+            </Check>
+        )
+    }
+
     const BasketBodyContent = function BBC() {
         return (
             <BodyDiv>
-                <BodyDivCheck>{CheckBox()}{console.log('--------',CheckBox() )}</BodyDivCheck>
+                <BodyDivCheck>{CheckBox()}{console.log('--------', CheckBox())}</BodyDivCheck>
                 <BodyDivImg></BodyDivImg>
                 <BodyDivContent>
                     <ContentName>Nike</ContentName>
@@ -37,14 +37,14 @@ function Basket() {
         )
     }
 
-    
-    
+
+
 
 
     return (
         <Div>
             <BasketTop>
-                <Header/>
+                <Header />
             </BasketTop>
             <BasketMiddle>
                 <BasketTitle>
