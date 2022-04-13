@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Routes, Route, Redirect, useHistory, BrowserRouter } from 'react-router-dom';
-import axios from 'axios';
-import Loding from './components/Loding';
+// import { Routes, Route, Redirect, useHistory, BrowserRouter } from 'react-router-dom';
+// import axios from 'axios';
+// import Loding from './components/Loding';
 import styled from 'styled-components';
 import Footer from "./components/Footer";
 import Landing from './pages/Landing';
@@ -26,11 +26,11 @@ function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  
   return (
     <div className="App">
     {/* {isLoading && <Loding/>} */}
     {/* 안녕 */}
+    {/* <Login/> */}
     <Landing/>
     {/* <Basket></Basket> */}
     {/* <NotFound/> */}
@@ -55,7 +55,8 @@ function App() {
         </Routes>
       </BrowserRouter> */}
     </div>
-  )}
+  )
+}
 
 export default App
 

@@ -4,7 +4,9 @@ import Header from "../components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import fontawesome from '@fortawesome/fontawesome'
 import { faCaretDown  } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark  } from '@fortawesome/free-solid-svg-icons'
 // import {ViewMore} from "../components/ViewMore"
+//<FontAwesomeIcon icon="fa-solid fa-bookmark" />
 
 
 
@@ -14,6 +16,7 @@ const Brand = () => {
         return (
             <ProductDiv>
                 <ProductImage/>
+                <ProductMark><FontAwesomeIcon icon={faBookmark} className='mark'/></ProductMark>
                 <ProductInfo>
                     <ProductName>Nike</ProductName>
                     <ProductContent>super joden limited</ProductContent>
@@ -66,12 +69,10 @@ const Brand = () => {
 // const = styled.``
 const BrandContainer = styled.div`
   position: relative;
-  /* padding:28px ; */
   display: grid;
   place-items: center;
   width: 100%;
   height: 1200px;
-  /* margin-top: 50px; */
   background-color: white;
 `
 //Top, Area, FavDiv, Product_Image, Product_info, Product_name, Product_content, Product_price
@@ -79,7 +80,6 @@ const BrandContainer = styled.div`
 const Top = styled.div`
 width: 90%;
 height: 500px;
-/* border: 1px solid black; */
 
 `
 // 좋아하는 브랜드
@@ -89,7 +89,6 @@ margin-left:12vw ;
 width: 200px;
 height: 80px;
 font-size: 20px ;
-/* border: 1px solid black; */
 
 `
 const FavDivBottom = styled.div`
@@ -97,7 +96,6 @@ color: #999999 ;
 width: 185px;
 height: 50px;
 font-size: 12px ;
-/* border: 1px solid black; */
 
 `
 
@@ -106,22 +104,15 @@ font-size: 12px ;
 const Area = styled.div`
 width: 50%;
 height: 60px ;
-/* border: 1px solid black; */
 
 `
 const Div = styled.div`
-/* position: flex; */
-/* border: 1px solid black; */
-/* place-items: center; */
 justify-content: center;
 display:flex ;
 width: 100%;
 height: 380px;
 `
 const ProductDiv = styled.div`
-/* border: 1px solid black; */
-/* position: flex; */
-
 display:inline-block ;
 margin: 0.7em;
 width: 14vw;
@@ -129,7 +120,6 @@ height: 14vh;
 `
 const ProductInfo = styled.div`
 margin-top:0.3em ;
-/* border: 1px solid black; */
 width: 100%;
 height: 100px;
 `
@@ -139,15 +129,16 @@ border: 1px solid whitesmoke;
 width: 100%;
 height: 250px;
 `
+const ProductMark = styled.div`
+font-size: 15px ;
+`
 const ProductName = styled.div`
-/* border: 1px solid black; */
 font-weight:600;
 text-align: start;
 width: 100%;
 height: 25px;
 `
 const ProductContent = styled.div`
-/* border: 1px solid black; */
 text-align: start;
 font-weight:350;
 font-size:14px ;
@@ -155,7 +146,6 @@ width: 100%;
 height: 30px;
 `
 const ProductPrice = styled.div`
-/* border: 1px solid black; */
 text-align: start;
 font-weight:border;
 font-size: 16px;
@@ -172,8 +162,7 @@ font-size:0.5em ;
 `
 //더보기
 const Morebtn = styled.div`
-/* border: 1px solid black; */
-/* margin-top:20px ; */
+
 line-height: 50px;
 border-radius: 12px ;
 padding:0 30;
@@ -186,19 +175,16 @@ height: 5vh;
 color:#444444 ;
 cursor: pointer;
 `
-// font-awesome
 
 
 
 // down
 const Bottom = styled.div`
-/* border: 1px solid black; */
 width: 90%;
 height: 500px;
 `
 // 인기 브랜드
 const PopularDiv = styled.div`
-/* border: 1px solid black; */
 font-weight: 700 ;
 margin-left:11.5vw ;
 width: 200px;
@@ -211,7 +197,6 @@ margin-left:0.3vw ;
 width: 188px;
 height: 50px;
 font-size: 12px ;
-/* border: 1px solid black; */
 
 `
 
@@ -237,16 +222,10 @@ const Landing = () => {
 } 
 
 const LandingDiv = styled.div`
-    /* border: 1px solid black; */
-    /* margin:0;
-    padding:0; */
 `
 const LandingTop = styled.div`
-    /* border: 1px solid black; */
-
     width: 100%;
     height: 200px;
-    /* background-color: blue ; */
 `
 const LandingMiddle = styled.div`
     text-align: center;
@@ -257,7 +236,5 @@ const LandingMiddle = styled.div`
 `
 const LandingBottom = styled.div`
     width: 100%;
-    /* height: 1000px; */
-    /* background-color: grey ; */
 `
 export default Landing;
