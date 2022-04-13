@@ -24,12 +24,12 @@ const test = styled.div`
 function App() {
   const [token, setToken] = useState("");
   const [isLogin, setIsLogin] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   
   return (
     <div className="App">
-    {isLoading && <Loding/>}
+    {/* {isLoading && <Loding/>} */}
     {/* 안녕 */}
     <Landing/>
     {/* <Basket></Basket> */}

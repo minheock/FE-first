@@ -141,6 +141,7 @@ height: 250px;
 `
 const ProductName = styled.div`
 /* border: 1px solid black; */
+font-weight:600;
 text-align: start;
 width: 100%;
 height: 25px;
