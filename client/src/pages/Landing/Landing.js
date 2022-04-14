@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 // import fontawesome from '@fortawesome/fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { faBookmark } from '@fortawesome/free-regular-svg-icons';
-import { faBookmark as  check } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark as check } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 // import {ViewMore} from "../components/ViewMore"
 //<FontAwesomeIcon icon="fa-solid fa-bookmark" />
@@ -23,7 +23,12 @@ const Brand = ({
   isOn,
 }) => {
   const { id: userId } = userInfo;
-  const popularItems = ({ popularItem, handlePostbuyCarts,MarkHandler, isOn }) => {
+  const popularItems = ({
+    popularItem,
+    handlePostbuyCarts,
+    MarkHandler,
+    isOn,
+  }) => {
     return (
       <>
         {popularItem.map((el) => {
@@ -39,7 +44,12 @@ const Brand = ({
                       onClick={(e) => handlePostbuyCarts(e)}
                     ></ProductImage>
                     <ProductMark>
-                    <FontAwesomeIcon FontAwesomeIcon onClick={() => MarkHandler()} icon={isOn === false ? faBookmark : check} className='mark' />
+                      <FontAwesomeIcon
+                        FontAwesomeIcon
+                        onClick={() => MarkHandler()}
+                        icon={isOn === false ? faBookmark : check}
+                        className="mark"
+                      />
                     </ProductMark>
                     <ProductInfo>
                       <ProductName>{el.brand}</ProductName>
@@ -73,7 +83,12 @@ const Brand = ({
                       onClick={(e) => handlePostbuyCarts(e)}
                     ></ProductImage>
                     <ProductMark>
-                    <FontAwesomeIcon FontAwesomeIcon onClick={() => MarkHandler()} icon={isOn === false ? faBookmark : check} className='mark' />
+                      <FontAwesomeIcon
+                        FontAwesomeIcon
+                        onClick={() => MarkHandler()}
+                        icon={isOn === false ? faBookmark : check}
+                        className="mark"
+                      />
                     </ProductMark>
                     <ProductInfo>
                       <ProductName>{el.brand}</ProductName>
@@ -100,7 +115,7 @@ const Brand = ({
             <FavDivBottom>선호 등록 상품</FavDivBottom>
           </FavDiv>
         </Area>
-        {favItems({ favItem, handlePostbuyCarts,MarkHandler, isOn })}
+        {favItems({ favItem, handlePostbuyCarts, MarkHandler, isOn })}
       </Top>
 
       <Morebtn id={userId} onClick={(e) => handleClickFav(e)}>
@@ -115,7 +130,7 @@ const Brand = ({
             <PopularDivBottom>인기 등록 상품</PopularDivBottom>
           </PopularDiv>
         </Area>
-        {popularItems({ popularItem, handlePostbuyCarts,MarkHandler, isOn})}
+        {popularItems({ popularItem, handlePostbuyCarts, MarkHandler, isOn })}
       </Bottom>
       <Morebtn onClick={() => handleClickPopular()}>
         더보기
@@ -189,7 +204,7 @@ const ProductImage = styled.div`
 `;
 const ProductMark = styled.div`
   font-size: 15px;
-  bottom:300px;
+  bottom: 300px;
 `;
 const ProductName = styled.div`
   font-weight: 600;
@@ -260,7 +275,7 @@ const PopularDivBottom = styled.div`
 const Landing = ({ isLogin, userInfo, setIsLogin }) => {
   const [popularItem, setPopularItem] = useState([]);
   const [favItem, setFavItem] = useState([]);
-  const [isOn, setisOn] = useState(false)
+  const [isOn, setisOn] = useState(false);
   useEffect(() => {
     handlePopularItem();
     handleFavItem(userInfo);
@@ -360,8 +375,8 @@ const Landing = ({ isLogin, userInfo, setIsLogin }) => {
     });
   };
   const MarkHandler = () => {
-    setisOn(!isOn)
-  }
+    setisOn(!isOn);
+  };
   return (
     <LandingDiv>
       <Header setIsLogin={setIsLogin} isLogin={isLogin} />

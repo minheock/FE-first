@@ -6,16 +6,15 @@ import Header from '../../components/Header';
 
 // 스테이트로 카운터해서 값이 추가될때마다 카운트가 올라가고 삭제하면 하나 삭제할때마다
 // 관심상품
-function Basket({ isLogin }) {
+function Basket({ isLogin, setIsLogin, userInfo }) {
   const [isOne, setisOne] = useState(false);
   const isTwo = !isOne;
   const [buyCartsGet, setBuyCartsGet] = useState([]);
 
-  const userinfo = { id: 9 };
   // console.log(userinfo);
 
   useEffect(() => {
-    handlebuyCarts(userinfo);
+    handlebuyCarts(userInfo);
   }, []);
 
   const handlebuyCarts = async ({ id }) => {
@@ -60,10 +59,11 @@ function Basket({ isLogin }) {
           <BodyDivCheck>
             {CheckBox()}
             {/* {console.log('--------', CheckBox())} */}
+            {console.log(item)}
           </BodyDivCheck>
           <BodyDivImg item={item}></BodyDivImg>
           <BodyDivContent>
-            <ContentName>{item.favBrand}</ContentName>
+            <ContentName>{item.itemName}</ContentName>
             <ContentSize>{item.size}</ContentSize>
             <ContentGrade>{item.grade}</ContentGrade>
           </BodyDivContent>
@@ -76,7 +76,7 @@ function Basket({ isLogin }) {
   return (
     <Div>
       <BasketTop>
-        <Header isLogin={isLogin} />
+        <Header isLogin={isLogin} setIsLogin={setIsLogin} />
       </BasketTop>
       <BasketMiddle>
         <BasketTitle>
@@ -206,7 +206,7 @@ const BodyDiv = styled.div`
   border-bottom: 1px solid #bcbcbc;
   display: flex;
   height: 20vh;
-  width: 1000px;
+  width: 52vw;
   place-items: center;
   /* align-items: center; */
   /* flex-direction:column; */
@@ -233,7 +233,7 @@ const BodyDivContent = styled.div`
   /* vertical-align: center; */
   /* border: 1px solid black; */
   /* border-radius: 10%; */
-  height: 8em;
+  height: 6em;
   width: 25%;
   text-align: start;
   padding-top: 5px;
@@ -287,9 +287,8 @@ const CalculatorText = styled.div`
   width: 35vh;
   height: 8vh;
 `;
-const SumDiv = styled.div`
+const SumDiv = styled.button`
   border-radius: 6%;
-  margin-top: 2em;
   margin-left: 60vh;
   color: white;
   font-size: 1.5em;
