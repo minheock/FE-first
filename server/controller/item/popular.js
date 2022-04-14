@@ -19,7 +19,7 @@ module.exports = {
       const itemInfo = await Item.findAll({
         where: { id: { [Op.in]: randomItem } },
       });
-
+      
       res.status(200).json({ popular: itemInfo });
     } catch (err) {
       console.error(err);

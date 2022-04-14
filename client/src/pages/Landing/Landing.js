@@ -5,7 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 // import fontawesome from '@fortawesome/fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
-import { faBookmark } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark } from '@fortawesome/free-regular-svg-icons';
+import { faBookmark as  check } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 // import {ViewMore} from "../components/ViewMore"
 //<FontAwesomeIcon icon="fa-solid fa-bookmark" />
@@ -18,9 +19,11 @@ const Brand = ({
   handleClickFav,
   userInfo,
   handlePostbuyCarts,
+  MarkHandler,
+  isOn,
 }) => {
   const { id: userId } = userInfo;
-  const popularItems = ({ popularItem, handlePostbuyCarts }) => {
+  const popularItems = ({ popularItem, handlePostbuyCarts,MarkHandler, isOn }) => {
     return (
       <>
         {popularItem.map((el) => {
@@ -36,7 +39,7 @@ const Brand = ({
                       onClick={(e) => handlePostbuyCarts(e)}
                     ></ProductImage>
                     <ProductMark>
-                      <FontAwesomeIcon icon={faBookmark} className="mark" />
+                    <FontAwesomeIcon FontAwesomeIcon onClick={() => MarkHandler()} icon={isOn === false ? faBookmark : check} className='mark' />
                     </ProductMark>
                     <ProductInfo>
                       <ProductName>{el.brand}</ProductName>
@@ -63,9 +66,14 @@ const Brand = ({
               {el.map((el) => {
                 return (
                   <ProductDiv>
-                    <ProductImage el={el} id={el}></ProductImage>
+                    <ProductImage
+                      el={el}
+                      id={userId}
+                      data-value={el.id}
+                      onClick={(e) => handlePostbuyCarts(e)}
+                    ></ProductImage>
                     <ProductMark>
-                      <FontAwesomeIcon icon={faBookmark} className="mark" />
+                    <FontAwesomeIcon FontAwesomeIcon onClick={() => MarkHandler()} icon={isOn === false ? faBookmark : check} className='mark' />
                     </ProductMark>
                     <ProductInfo>
                       <ProductName>{el.brand}</ProductName>
@@ -92,8 +100,9 @@ const Brand = ({
             <FavDivBottom>선호 등록 상품</FavDivBottom>
           </FavDiv>
         </Area>
-        {favItems({ favItem, handlePostbuyCarts })}
+        {favItems({ favItem, handlePostbuyCarts,MarkHandler, isOn })}
       </Top>
+
       <Morebtn id={userId} onClick={(e) => handleClickFav(e)}>
         더보기
         <FontAwesomeIcon icon={faCaretDown} className="more" />
@@ -106,7 +115,7 @@ const Brand = ({
             <PopularDivBottom>인기 등록 상품</PopularDivBottom>
           </PopularDiv>
         </Area>
-        {popularItems({ popularItem, handlePostbuyCarts })}
+        {popularItems({ popularItem, handlePostbuyCarts,MarkHandler, isOn})}
       </Bottom>
       <Morebtn onClick={() => handleClickPopular()}>
         더보기
@@ -121,15 +130,14 @@ const BrandContainer = styled.div`
   position: relative;
   display: grid;
   place-items: center;
+  height: auto;
   width: 100%;
-  height: 1200px;
   background-color: white;
 `;
 //Top, Area, FavDiv, Product_Image, Product_info, Product_name, Product_content, Product_price
 // up
 const Top = styled.div`
   width: 90%;
-  height: 500px;
 `;
 // 좋아하는 브랜드
 const FavDiv = styled.div`
@@ -181,6 +189,7 @@ const ProductImage = styled.div`
 `;
 const ProductMark = styled.div`
   font-size: 15px;
+  bottom:300px;
 `;
 const ProductName = styled.div`
   font-weight: 600;
@@ -212,7 +221,7 @@ const Productnow = styled.div`
 `;
 //더보기
 const Morebtn = styled.div`
-  margin-top: 20px;
+  margin-top: 10px;
   line-height: 50px;
   border-radius: 12px;
   padding: 0 30;
@@ -229,7 +238,7 @@ const Morebtn = styled.div`
 // down
 const Bottom = styled.div`
   width: 90%;
-  height: 500px;
+  margin-top: 20px;
 `;
 // 인기 브랜드
 const PopularDiv = styled.div`
@@ -248,9 +257,10 @@ const PopularDivBottom = styled.div`
 `;
 
 // 랜딩 페이지
-const Landing = ({ userInfo, isLogin }) => {
+const Landing = ({ isLogin, userInfo, setIsLogin }) => {
   const [popularItem, setPopularItem] = useState([]);
   const [favItem, setFavItem] = useState([]);
+  const [isOn, setisOn] = useState(false)
   useEffect(() => {
     handlePopularItem();
     handleFavItem(userInfo);
@@ -269,6 +279,7 @@ const Landing = ({ userInfo, isLogin }) => {
 
   const handleClickFav = async (e) => {
     let { id } = e.target;
+    console.log(id);
     id = Number(id);
     const accessToken = window.localStorage.getItem('accessToken');
     await axios({
@@ -299,7 +310,7 @@ const Landing = ({ userInfo, isLogin }) => {
   const handlePopularItem = async () => {
     await axios({
       url: `https://localhost:4000/items/popular`,
-      method: 'get',
+      method: 'GET',
     }).then((res) => {
       const { popular } = res.data;
       setPopularItem([popular]);
@@ -311,7 +322,7 @@ const Landing = ({ userInfo, isLogin }) => {
     const accessToken = window.localStorage.getItem('accessToken');
     await axios({
       url: `https://localhost:4000/items/${id}/fav`,
-      method: 'get',
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
         Authorization: `jwt ${accessToken}`,
@@ -332,6 +343,7 @@ const Landing = ({ userInfo, isLogin }) => {
     // id = Number(id);
     const { id } = e.target;
     const { value } = e.target.dataset;
+    console.log(id);
     const accessToken = window.localStorage.getItem('accessToken');
 
     await axios({
@@ -347,25 +359,26 @@ const Landing = ({ userInfo, isLogin }) => {
       console.log(message);
     });
   };
-
+  const MarkHandler = () => {
+    setisOn(!isOn)
+  }
   return (
     <LandingDiv>
-      <LandingTop>
-        <Header isLogin={isLogin} />
-      </LandingTop>
-      <LandingMiddle>
-        <Brand
-          popularItem={popularItem}
-          favItem={favItem}
-          handleClickPopular={handleClickPopular}
-          handleClickFav={handleClickFav}
-          userInfo={userInfo}
-          handlePostbuyCarts={handlePostbuyCarts}
-        />
-      </LandingMiddle>
-      <LandingBottom>
-        <Footer />
-      </LandingBottom>
+      <Header setIsLogin={setIsLogin} isLogin={isLogin} />
+
+      <Brand
+        MarkHandler={MarkHandler}
+        isOn={isOn}
+        setisOn={setisOn}
+        popularItem={popularItem}
+        favItem={favItem}
+        handleClickPopular={handleClickPopular}
+        handleClickFav={handleClickFav}
+        userInfo={userInfo}
+        handlePostbuyCarts={handlePostbuyCarts}
+      />
+
+      <Footer />
     </LandingDiv>
   );
 };
