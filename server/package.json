@@ -8,21 +8,12 @@
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",
     "node-fetch": "^2.6.7",
-<<<<<<< HEAD
-    "sequelize": "^6.19.0"
-=======
     "sequelize": "^6.18.0"
->>>>>>> acf772c350e1c0cc9964cff74b137dfb0ad60536
   },
   "scripts": {
     "start": "nodemon index.js"
   },
   "devDependencies": {
-<<<<<<< HEAD
-    "nodemon": "^2.0.15",
-    "sequelize-cli": "^6.4.1"
-=======
     "nodemon": "^2.0.15"
->>>>>>> acf772c350e1c0cc9964cff74b137dfb0ad60536
   }
 }

@@ -6,8 +6,6 @@ import {
   Redirect,
 } from 'react-router-dom';
 import axios from 'axios';
-import Footer from './components/Footer';
-import Header from './components/Header';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import Mypage from './pages/Mypage/Mypage';
